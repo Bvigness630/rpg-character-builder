@@ -6,24 +6,7 @@ import { CharacterClass } from '../models/character-class';
   selector: 'classes-page',
   standalone: true,
   imports: [RouterLink],
-  template: `
-    <section>
-      <h1>Character Classes</h1>
-
-      <div class="class-list">
-        @for (characterClass of characterClasses; track characterClass.id) {
-          <article>
-            <h2>{{ characterClass.name }}</h2>
-            <p>{{ characterClass.description }}</p>
-
-            <a [routerLink]="['/classes', characterClass.id]">
-              View Details
-            </a>
-          </article>
-        }
-      </div>
-    </section>
-  `
+  templateUrl: './classes.component.html'
 })
 export class ClassesComponent {
   public characterClasses: CharacterClass[] = [

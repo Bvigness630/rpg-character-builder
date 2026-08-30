@@ -8,21 +8,32 @@ import { AboutComponent } from './about/about.component';
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    title: 'Home | RPG Character Builder'
   },
   {
     path: 'classes',
-    component: ClassesComponent
+    component: ClassesComponent,
+    title: 'Character Classes | RPG Character Builder'
   },
   {
     path: 'classes/:id',
-    component: ClassDetailComponent
+    component: ClassDetailComponent,
+    title: 'Character Class Details | RPG Character Builder',
+    data: {
+      title: 'Character Class Details'
+    }
   },
   {
     path: 'about',
     component: AboutComponent,
+    title: 'About | RPG Character Builder',
     data: {
       title: 'About'
     }
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];

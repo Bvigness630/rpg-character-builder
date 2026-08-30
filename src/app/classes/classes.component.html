@@ -1,1 +1,16 @@
-<p>classes works!</p>
+<section>
+  <h1>Character Classes</h1>
+
+  <div class="class-list" data-testid="class-list">
+    @for (characterClass of characterClasses; track characterClass.id) {
+      <article class="character-class">
+        <h2>{{ characterClass.name }}</h2>
+        <p>{{ characterClass.description }}</p>
+
+        <a [routerLink]="['/classes', characterClass.id]">
+          View Details
+        </a>
+      </article>
+    }
+  </div>
+</section>

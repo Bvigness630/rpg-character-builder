@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   template: `
     <section>
-      <h1>{{ title }}</h1>
+      <h1 data-testid="about-title">{{ title }}</h1>
       <p>This application demonstrates Angular routing.</p>
     </section>
   `
