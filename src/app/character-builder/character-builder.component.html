@@ -1,0 +1,84 @@
+<form
+  #characterForm="ngForm"
+  data-testid="character-form"
+  (ngSubmit)="onSubmit(characterForm)"
+  novalidate
+>
+  <div>
+    <label for="character-name">Name</label>
+    <input
+      id="character-name"
+      name="name"
+      type="text"
+      [(ngModel)]="character.name"
+      required
+      data-testid="character-name"
+      #name="ngModel"
+    />
+  </div>
+
+  <div>
+    <label for="character-class">Class</label>
+    <input
+      id="character-class"
+      name="characterClass"
+      type="text"
+      [(ngModel)]="character.characterClass"
+      required
+      data-testid="character-class"
+      #characterClass="ngModel"
+    />
+  </div>
+
+  <div>
+    <label for="character-level">Level</label>
+    <input
+      id="character-level"
+      name="level"
+      type="number"
+      [(ngModel)]="character.level"
+      min="1"
+      max="20"
+      step="1"
+      required
+      data-testid="character-level"
+      #level="ngModel"
+    />
+  </div>
+
+  <div>
+    <label for="character-veteran">
+      <input
+        id="character-veteran"
+        name="veteran"
+        type="checkbox"
+        [(ngModel)]="character.veteran"
+        data-testid="character-veteran"
+      />
+      Veteran
+    </label>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="characterForm.invalid"
+    data-testid="character-submit"
+  >
+    Create Character
+  </button>
+</form>
+
+<section>
+  <h2>Characters</h2>
+
+  <ul data-testid="character-list">
+    @for (character of characters; track $index) {
+      <li>
+        {{ character.name }} -
+        {{ character.characterClass }} -
+        Level {{ character.level }} -
+        {{ character.startingHitPoints }} HP
+      </li>
+    }
+  </ul>
+</section>
