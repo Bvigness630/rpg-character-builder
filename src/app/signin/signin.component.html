@@ -1,0 +1,77 @@
+<section class="w4-container">
+  <div class="w4-panel w4-form">
+    <p class="w4-eyebrow">RPG Character Builder</p>
+
+    <h1>Sign In</h1>
+    <p class="w4-page-intro">
+      Sign in to access the character builder.
+    </p>
+
+    <form
+      class="signin-form"
+      [formGroup]="signinForm"
+      (ngSubmit)="onSubmit()"
+      data-testid="signin-form"
+    >
+      <div class="w4-field">
+        <label class="w4-label" for="username">Username</label>
+
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          data-testid="username"
+        />
+
+        <div
+          *ngIf="username.invalid && (username.touched || username.dirty)"
+          class="w4-error"
+          data-testid="username-error"
+        >
+          <span *ngIf="username.hasError('required')">
+            Username is required.
+          </span>
+
+          <span *ngIf="username.hasError('minlength')">
+            Username must be at least 3 characters.
+          </span>
+        </div>
+      </div>
+
+      <div class="w4-field">
+        <label class="w4-label" for="access-code">Access Code</label>
+
+        <input
+          id="access-code"
+          type="text"
+          formControlName="accessCode"
+          maxlength="6"
+          data-testid="access-code"
+        />
+
+        <div
+          *ngIf="accessCode.invalid && (accessCode.touched || accessCode.dirty)"
+          class="w4-error"
+          data-testid="access-code-error"
+        >
+          <span *ngIf="accessCode.hasError('required')">
+            Access code is required.
+          </span>
+
+          <span *ngIf="accessCode.hasError('pattern')">
+            Access code must be exactly 6 letters or numbers.
+          </span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="w4-btn w4-btn-primary w4-btn-block"
+        [disabled]="signinForm.invalid"
+        data-testid="signin-submit"
+      >
+        Sign In
+      </button>
+    </form>
+  </div>
+</section>

@@ -9,9 +9,17 @@ interface ClassRouteData {
   selector: 'class-detail-page',
   standalone: true,
   template: `
-    <section data-testid="class-detail-page">
-      <h1>{{ routeData.title }}</h1>
-      <p data-testid="class-id">Class ID: {{ classId }}</p>
+    <section class="w4-container" data-testid="class-detail-page">
+      <div class="w4-panel">
+        <p class="w4-eyebrow">Character Class</p>
+
+        <h1>{{ routeData.title }}</h1>
+
+        <div class="w4-card">
+          <p class="w4-kicker">Class ID</p>
+          <p data-testid="class-id">{{ classId }}</p>
+        </div>
+      </div>
     </section>
   `
 })

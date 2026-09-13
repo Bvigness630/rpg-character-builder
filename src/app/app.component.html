@@ -1,17 +1,38 @@
-<header>
-  <h1>Hello, rpg-character-builder</h1>
+<header class="app-header">
+  <div class="app-header-inner">
+    <div>
+      <p class="w4-eyebrow">WEB 425</p>
+      <h1>RPG Character Builder</h1>
+    </div>
 
-  <nav>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/classes" routerLinkActive="active">Classes</a>
-    <a routerLink="/about" routerLinkActive="active">About</a>
-  </nav>
+    <nav aria-label="Main navigation">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </a>
+
+      <a routerLink="/classes" routerLinkActive="active">
+        Classes
+      </a>
+
+      <a routerLink="/about" routerLinkActive="active">
+        About
+      </a>
+
+      <a routerLink="/signin" routerLinkActive="active">
+        Sign In
+      </a>
+    </nav>
+  </div>
 </header>
 
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<footer>
+<footer class="app-footer">
   <p>WEB 425 · RPG Character Builder</p>
 </footer>
