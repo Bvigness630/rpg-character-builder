@@ -1,0 +1,130 @@
+<div class="w4-container">
+
+  <div class="w4-panel">
+    <h1>Character Profile</h1>
+
+    <p class="w4-page-intro">
+      Create your character!
+    </p>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" data-testid="profile-form">
+
+      <div class="w4-field">
+        <label for="class">Character Class</label>
+        <select
+          id="class"
+          formControlName="class"
+        >
+          <option value="">Choose your class</option>
+
+          @for (option of classOptions; track option.id) {
+            <option [value]="option.id">{{ option.label }}</option>
+          }
+        </select>
+
+        @if (profileForm.controls.class.touched && profileForm.controls.class.invalid) {
+          <p class="w4-error">Choose a character class.</p>
+        }
+      </div>
+
+      <div class="w4-field">
+        <label for="backstory">Backstory</label>
+        <textarea
+          id="backstory"
+          formControlName="backstory"
+          data-testid="backstory"
+          rows="5"
+          placeholder="Tell the story of your character's journey..."
+        ></textarea>
+
+        @if (profileForm.controls.backstory.touched && profileForm.controls.backstory.invalid) {
+          <p class="w4-error">Backstory is required.</p>
+        }
+      </div>
+
+      <fieldset data-testid="alignment-group">
+        <legend>Alignment</legend>
+
+        @for (option of alignmentOptions; track option.id) {
+          <label>
+            <input
+              type="radio"
+              formControlName="alignment"
+              [value]="option.id"
+            />
+            {{ option.label }}
+          </label>
+        }
+
+        @if (profileForm.controls.alignment.touched && profileForm.controls.alignment.invalid) {
+          <p class="w4-error">Choose an alignment.</p>
+        }
+      </fieldset>
+
+      <fieldset data-testid="skill-options" formArrayName="skills">
+        <legend>Skills</legend>
+
+        @for (option of skillOptions; track option.id; let i = $index) {
+          <label>
+            <input
+              type="checkbox"
+              [formControlName]="i"
+            />
+            {{ option.label }}
+          </label>
+        }
+
+        @if (profileForm.controls.skills.touched && profileForm.controls.skills.invalid) {
+          <p class="w4-error">Select at least one skill.</p>
+        }
+      </fieldset>
+
+      <div class="w4-field">
+        <label for="homeland">Homeland</label>
+        <select
+          id="homeland"
+          formControlName="homeland"
+          data-testid="homeland"
+        >
+          <option value="">Choose your homeland</option>
+
+          @for (option of homelandOptions; track option.id) {
+            <option [value]="option.id">{{ option.label }}</option>
+          }
+        </select>
+
+        @if (profileForm.controls.homeland.touched && profileForm.controls.homeland.invalid) {
+          <p class="w4-error">Choose a homeland.</p>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="w4-btn w4-btn-primary w4-btn-block"
+        data-testid="profile-submit"
+      >
+        Save Character Profile
+      </button>
+
+    </form>
+  </div>
+
+  <section>
+    <h2>Saved Character Profiles</h2>
+
+    <div data-testid="profile-list" class="w4-grid">
+      @for (profile of savedProfiles; track $index) {
+        <article class="w4-card">
+          <h3>{{ profile.class }} from {{ profile.homeland }}</h3>
+          <p><strong>Backstory:</strong> {{ profile.backstory }}</p>
+          <p><strong>Alignment:</strong> {{ profile.alignment }}</p>
+          <p><strong>Skills:</strong> {{ profile.skills.join(', ') }}</p>
+          <p><strong>Homeland:</strong> {{ profile.homeland }}</p>
+        </article>
+      } @empty {
+        <p>No saved character profiles yet.</p>
+      }
+    </div>
+  </section>
+
+</div>
